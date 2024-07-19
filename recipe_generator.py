@@ -27,7 +27,6 @@ def main() -> NoReturn:
             "抽出環境": "refrigerator",
             "豆の量 (g)": 40.0,
             "挽き目": 4.0,
-            "初期化水温": 20.0,
             "初期化水量": 40.0,
         }
         study.enqueue_trial(params)
@@ -43,7 +42,6 @@ def main() -> NoReturn:
         temperature = trial.suggest_categorical("抽出環境", ["room", "refrigerator"])
         bean_amount = trial.suggest_float("豆の量 (g)", 10, 40, step=1.0)
         grind_level = trial.suggest_float("挽き目", 0, 14, step=1.0)
-        init_water_temp = trial.suggest_float("初期化水温", 20, 80, step=1.0)
         init_water_weight = trial.suggest_float("初期化水量", 0, 40, step=10.0)
 
         # Add note
@@ -53,7 +51,6 @@ def main() -> NoReturn:
         - 抽出環境: {temperature}
         - 豆の量: {bean_amount} g
         - 挽き目: {grind_level}
-        - 初期化水温: {init_water_temp} °C
         - 初期化水量: {init_water_weight} g x 3回
         """
         )
